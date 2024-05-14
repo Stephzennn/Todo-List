@@ -1,0 +1,54 @@
+
+
+.body {
+    background-image: url('./Image/forest.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    grid-template-rows: 10vh auto;
+
+}
+
+.header{
+    background-color: black;
+    height: 10vh;
+    color: white;
+    border: white solid;
+}
+
+.project {
+    background-color: black;
+    grid-column: 1/2;
+    grid-row: 1/-1;
+    color: white;
+    border: white solid;
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+}
+
+.headerParent {
+    grid-column: 2/-1;
+    grid-row: 1/-1;
+    border: white solid;
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.todoBoard {
+    background-color: black;
+    min-height: 40vh;
+    border: white solid;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.newProject {
+    border: white solid;
+    
+    min-height: 7vh;
+    color: white;
+}
