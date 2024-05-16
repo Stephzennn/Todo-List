@@ -2,6 +2,12 @@ import {initialization as start} from './UI';
 import { ToDo } from './ToDo';
 import { Project } from './Projects';
 let totalArray = []
+// 
+
+
+
+
+
 
 let g = new ToDo("Hello there");
 
@@ -17,7 +23,6 @@ newproj1.setDueDate("6/10/2024")
 
 newproj1.add(z)
 newproj1.add(b)
-console.log(newproj)
 
 newproj.add(g)
 
@@ -31,9 +36,31 @@ newproj.add(f)
 newproj.add(f)
 newproj.add(f)
 
-console.log(newproj)
 
 
 totalArray.push(newproj1)
 totalArray.push(newproj)
+///*
+if (localStorage.array == undefined) {
+    localStorage.setItem('array', JSON.stringify(totalArray));
+   
+    
+}
+else{
+    //totalArray = localStorage.array
+    let newArray = JSON.parse(localStorage.getItem('array'));
+    let newArray2 = []
+    newArray.map(Projects=>{
+        let instance = new Project("")
+        instance.copyJson(Projects)
+        newArray2.push(instance)
+    })
+   
+    totalArray = newArray2
+}
+
+//*/
+
+
 start(totalArray);
+//localStorage.removeItem('array');

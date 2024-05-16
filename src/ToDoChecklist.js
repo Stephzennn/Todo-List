@@ -28,8 +28,6 @@ function createChecklistObject(object) {
     if (object.getStatus() != undefined)
     obinput.checked = object.getStatus()
     
-   console.log("Inside createchecklistonject")
-   console.log(ob.checked)
    return ob;
 }
 

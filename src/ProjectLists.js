@@ -4,7 +4,17 @@ import { Block } from './Block'
 import { header as headerInner } from './Header'
 function createProjectList(Project) {
     let projectListli = document.createElement("li")
-    projectListli.textContent = Project.getName();
+    //projectListli.textContent = Project.getName();
+    projectListli.style.border = "white solid 1px"
+    projectListli.classList.add("projectListli")
+    let words = document.createElement("div");
+    words.textContent = Project.getName();
+
+    let button = document.createElement('button')
+    
+    
+    projectListli.appendChild(words)
+    projectListli.appendChild(button)
     let projectListul = document.createElement("ul")
     projectListul.appendChild(projectListli)
     
@@ -53,8 +63,8 @@ function createNewProject(arrays,projectLists,todoBoard){
         labelPriority .classList.add("label")
         labelPriority .textContent = "Priority: "
         let inputPriority  = document.createElement("input")
-        inputPriority .classList.add("input")
-        inputDate.classList.add("priority1")
+        inputPriority.classList.add("input")
+        inputPriority.classList.add("priority1")
         input.type = "text"
         labelPriority.appendChild(inputPriority)
         labelPriority.appendChild(inputPriority)
@@ -69,20 +79,22 @@ function createNewProject(arrays,projectLists,todoBoard){
             let projectname = body.querySelector(".ProjectNameInput")
             let dueDate = body.querySelector(".DueDateinput")
             let priority1 = body.querySelector(".priority1")
-            console.log("At addproject")
-            console.log(projectname.value)
-            if (projectname.value == ""){
+          
+            if (projectname.value != ""){
                 let tempox = new Project(projectname.value)
+                tempox.setDueDate(dueDate.value)
+                tempox.setPriority(priority1.value)
                 arrays.push(tempox)
                 
-                tempox.setName("haland")
-                console.log(tempox.getName())
+                
                 let tempobj = createProjectList(tempox)
 
                 integrateProject(tempobj,projectLists, todoBoard, tempox)
-                console.log(projectLists)
+                
                 projectLists.appendChild(tempobj)
             }
+            
+            localStorage.setItem('array', JSON.stringify(arrays));
             body.removeChild(darkDiv)
             body.removeChild(form)
         })
@@ -103,6 +115,8 @@ function createNewProject(arrays,projectLists,todoBoard){
         body.appendChild(darkDiv)
         body.appendChild(form)
     })
+
+    
     return newProject
 }
 

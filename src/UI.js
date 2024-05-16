@@ -31,7 +31,7 @@ project.appendChild(projectTile)
 
 let projectList = document.createElement("div")
 projectList.classList.add("projectList")
-console.log(projectList)
+
 
 
 let todoBoard = document.createElement("div")
@@ -62,6 +62,7 @@ if(arrays.length !== 0){
             todoBoard.appendChild(todoTitle)
             listAllChecklist(num,todoTitle,todoBoard)
             todoBoard.appendChild(Block(todoBoard, activeProject))
+            localStorage.setItem('array', JSON.stringify(arrays));
             
         })
         projectList.appendChild(tempo)

@@ -9,6 +9,27 @@
     grid-template-rows: 10vh auto;
 
 }
+.projectListli {
+    display: flex;
+    justify-content: space-between;
+}
+
+.projectListli>button {
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+    background-image: url('./Image/option.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    border: 0px;
+    opacity: 0;
+
+}
+
+.projectListli>button:hover {
+    opacity: 1;
+}
 
 .whiteBorder{
     border: white solid ;
@@ -164,7 +185,7 @@
     width: 90px;
     margin-right: 5px;
     color: white;
-    background-color: rgb(89, 239, 72);
+    background-color: #59ef48;
     font-weight: bold;
     font-size: 20px;
     height: 35px;

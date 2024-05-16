@@ -1,6 +1,6 @@
 import './style.css'
 import { ToDo } from './ToDo'
-
+import { Project } from './Projects';
 import { createChecklistObject } from './ToDoChecklist'
 
 function Block(todoBoard,activeProject) {
@@ -58,13 +58,32 @@ function Block(todoBoard,activeProject) {
         overallDiv.appendChild(inputBlock)
         TransparentDiv.addEventListener("click", ()=>{
             let inputer = todoBoard.querySelector(".inputTextBlock")
-            console.log(inputer.value)
+            
             if (inputer.value != ""){
                 let num = new ToDo(inputer.value)
-                
+                let arrays = JSON.parse(localStorage.getItem('array'));
+                let arrays2 = []
+                arrays.map(Projects=>{
+                    let instance = new Project("")
+                    instance.copyJson(Projects)
+                    arrays2.push(instance)
+                })
+                let index;
+               
+                arrays2.map((proj,ind)=>{
+                    
+                    if (proj.isequal(activeProject)){
+                        index = ind;
+                        
+                    }
+                    
+                })
                 activeProject.add(num)
+                arrays[index] = activeProject
+                localStorage.setItem('array', JSON.stringify(arrays));
                 let tempox = createChecklistObject(num)
                 todoBoard.replaceChild(tempox,overallDiv)
+                
             }
             else {
                 todoBoard.removeChild(overallDiv)

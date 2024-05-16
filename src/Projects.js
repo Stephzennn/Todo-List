@@ -1,3 +1,4 @@
+import { ToDo } from "./ToDo";
 class Project {
     constructor(name){
         this.name = name
@@ -20,7 +21,7 @@ class Project {
     }
 
     setPriority(newPriority){
-        this.Priority = newPriority
+        this.Priority = newPriority;
     }
 
     getName() {
@@ -51,6 +52,39 @@ class Project {
         if (num != -1){
             this.todos.splice(num, 1)
         }
+    }
+    copyJson(obj){
+        this.name = obj.name
+        
+        this.DueDate = obj.DueDate
+        this.Priority = obj.Priority
+        obj.todos.map(Objects =>{
+            let instance = new ToDo("")
+            instance.copyJson(Objects)
+            this.todos.push(instance)
+        })
+        
+    }
+
+    isequal(obj){
+        if (this.name !== obj.getName()){
+            return false
+        }
+        else if (this.DueDate !== obj.getDueDate()) {
+            return false
+        }
+        else if (this.Priority != obj.getPriority()){
+            return false
+        }
+        
+        this.todos.map((object, index)=>{
+            let arr = obj.getArray()
+         
+            if (object.isequal(arr[index]) == false){
+                return false
+            }
+        })
+        return true
     }
 }
 
