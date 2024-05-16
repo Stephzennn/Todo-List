@@ -5,7 +5,7 @@ import { header as headerInner } from './Header'
 function createProjectList(Project) {
     let projectListli = document.createElement("li")
     //projectListli.textContent = Project.getName();
-    projectListli.style.border = "white solid 1px"
+    
     projectListli.classList.add("projectListli")
     let words = document.createElement("div");
     words.textContent = Project.getName();
