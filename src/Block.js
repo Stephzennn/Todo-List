@@ -1,6 +1,9 @@
 import './style.css'
+import { ToDo } from './ToDo'
 
-function Block() {
+import { createChecklistObject } from './ToDoChecklist'
+
+function Block(todoBoard,activeProject) {
     
 
     let addBlock = document.createElement("div")
@@ -31,7 +34,51 @@ function Block() {
     let addButton = document.createElement("div")
     addButton.classList.add("addButton")
     addButton.textContent = " + Add Block"
+    addButton.addEventListener("click", ()=>{
+        let body = document.querySelector("body")
+        let TransparentDiv = document.createElement("div")
+        TransparentDiv.classList.add("darkDiv")
+        TransparentDiv.style.opacity = "0"
+        
 
+
+        todoBoard.removeChild(addBlock)
+        let overallDiv = document.createElement("div")
+        overallDiv.classList.add("overallDiv")
+        overallDiv.classList.add("firstdiv")
+        let inputFirst = document.createElement("input")
+        inputFirst.type = "checkbox"
+        
+        let inputBlock = document.createElement("input")
+        inputBlock.style.marginLeft = "2%"
+
+        inputBlock.style.width = "100%"
+        inputBlock.classList.add("inputTextBlock")
+        overallDiv.appendChild(inputFirst)
+        overallDiv.appendChild(inputBlock)
+        TransparentDiv.addEventListener("click", ()=>{
+            let inputer = todoBoard.querySelector(".inputTextBlock")
+            console.log(inputer.value)
+            if (inputer.value != ""){
+                let num = new ToDo(inputer.value)
+                
+                activeProject.add(num)
+                let tempox = createChecklistObject(num)
+                todoBoard.replaceChild(tempox,overallDiv)
+            }
+            else {
+                todoBoard.removeChild(overallDiv)
+            }
+            
+            
+
+            todoBoard.removeChild(TransparentDiv)
+        })
+        todoBoard.appendChild(TransparentDiv)
+        todoBoard.appendChild(overallDiv)
+        todoBoard.appendChild(Block(todoBoard,activeProject))
+
+    })
     addBlock.appendChild(leftline)
     addBlock.appendChild(addButton)
     addBlock.appendChild(rightline)

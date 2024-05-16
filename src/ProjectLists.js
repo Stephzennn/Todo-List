@@ -1,5 +1,7 @@
-
-
+import { listAllChecklist } from './ToDoChecklist'
+import { Project } from './Projects'
+import { Block } from './Block'
+import { header as headerInner } from './Header'
 function createProjectList(Project) {
     let projectListli = document.createElement("li")
     projectListli.textContent = Project.getName();
@@ -10,7 +12,7 @@ function createProjectList(Project) {
 }
 
 
-function createNewProject(){
+function createNewProject(arrays,projectLists,todoBoard){
     let newProject = document.createElement("div")
     newProject.classList.add("newProject")
     let newProjectul = document.createElement("ul")
@@ -31,6 +33,7 @@ function createNewProject(){
         label.textContent = "Project Name: "
         let input = document.createElement("input")
         input.classList.add("input")
+        input.classList.add("ProjectNameInput")
         input.type = "text"
 
 
@@ -40,6 +43,8 @@ function createNewProject(){
         labelDate.textContent = "Due Date: "
         let inputDate = document.createElement("input")
         inputDate.classList.add("input")
+        inputDate.classList.add("DueDateinput")
+        
         input.type = "text"
         label.appendChild(input)
         labelDate.appendChild(inputDate)
@@ -49,6 +54,7 @@ function createNewProject(){
         labelPriority .textContent = "Priority: "
         let inputPriority  = document.createElement("input")
         inputPriority .classList.add("input")
+        inputDate.classList.add("priority1")
         input.type = "text"
         labelPriority.appendChild(inputPriority)
         labelPriority.appendChild(inputPriority)
@@ -60,6 +66,23 @@ function createNewProject(){
         Addproject.classList.add("shareButton")
         Addproject.classList.add("Addproject")
         Addproject.addEventListener("click", ()=>{
+            let projectname = body.querySelector(".ProjectNameInput")
+            let dueDate = body.querySelector(".DueDateinput")
+            let priority1 = body.querySelector(".priority1")
+            console.log("At addproject")
+            console.log(projectname.value)
+            if (projectname.value == ""){
+                let tempox = new Project(projectname.value)
+                arrays.push(tempox)
+                
+                tempox.setName("haland")
+                console.log(tempox.getName())
+                let tempobj = createProjectList(tempox)
+
+                integrateProject(tempobj,projectLists, todoBoard, tempox)
+                console.log(projectLists)
+                projectLists.appendChild(tempobj)
+            }
             body.removeChild(darkDiv)
             body.removeChild(form)
         })
@@ -83,4 +106,21 @@ function createNewProject(){
     return newProject
 }
 
-export{createProjectList, createNewProject}
+
+function integrateProject(tempo,projectList, todoBoard, ProjectObject){
+    
+    tempo.addEventListener("click" , ()=>{
+        todoBoard.replaceChildren()
+        let todoTitle = document.createElement("div")
+        todoTitle.classList.add("todoTitle")
+        
+        todoBoard.appendChild(todoTitle)
+        listAllChecklist(ProjectObject,todoTitle,todoBoard)
+        todoBoard.appendChild(Block(todoBoard, ProjectObject))
+        
+    })
+    projectList.appendChild(tempo)
+}
+
+
+export{createProjectList, createNewProject, integrateProject}

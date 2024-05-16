@@ -105,8 +105,7 @@ function listAllChecklist(activeProject,todoTitle,todoBoard ) {
     todoTitle.appendChild(UnderBox)
 
     activeProject.getArray().map(function(num){
-        console.log("herer")
-        console.log(num.getDescription())
+        
         
         todoBoard.appendChild(createChecklistObject(num))
         

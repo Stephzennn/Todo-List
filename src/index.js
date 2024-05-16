@@ -34,6 +34,6 @@ newproj.add(f)
 console.log(newproj)
 
 
-totalArray.push(newproj)
 totalArray.push(newproj1)
+totalArray.push(newproj)
 start(totalArray);

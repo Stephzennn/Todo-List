@@ -69,6 +69,13 @@
     opacity: 85%;
 }
 
+
+.overallDiv{
+    display: flex;
+    z-index: 9999;
+    position: relative;
+}
+
 .formE {
     color: white;
     position: fixed;  /* Positioning relative to the viewport */

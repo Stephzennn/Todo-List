@@ -1,6 +1,6 @@
 import './style.css'
 import { createChecklist  } from './ToDoChecklist'
-import { createProjectList, createNewProject } from './ProjectLists'
+import { createProjectList, createNewProject ,integrateProject} from './ProjectLists'
 import { createChecklistObject } from './ToDoChecklist'
 import { listAllChecklist } from './ToDoChecklist'
 import { Project } from './Projects'
@@ -22,9 +22,7 @@ header.appendChild(headerInner())
 let project = document.createElement("div")
 project.classList.add("project")
 
-let newProject = createNewProject()
 
-project.appendChild(newProject)
 
 let projectTile = document.createElement("div")
 projectTile.classList.add("projectTile")
@@ -33,6 +31,8 @@ project.appendChild(projectTile)
 
 let projectList = document.createElement("div")
 projectList.classList.add("projectList")
+console.log(projectList)
+
 
 let todoBoard = document.createElement("div")
 
@@ -41,6 +41,11 @@ todoTitle.classList.add("todoTitle")
 todoBoard.classList.add("todoBoard")
 todoBoard.appendChild(todoTitle)
 let activeProject = new Project("")
+
+
+let newProject = createNewProject(arrays,projectList,todoBoard)
+
+project.appendChild(newProject)
 //li that will be gotten from the server 
 if(arrays.length !== 0){
     activeProject = arrays[0]
@@ -56,13 +61,13 @@ if(arrays.length !== 0){
             
             todoBoard.appendChild(todoTitle)
             listAllChecklist(num,todoTitle,todoBoard)
-            todoBoard.appendChild(Block())
+            todoBoard.appendChild(Block(todoBoard, activeProject))
             
         })
         projectList.appendChild(tempo)
         
         
-       console.log(num)
+       
     })
 }
 listAllChecklist(activeProject,todoTitle,todoBoard)
@@ -71,7 +76,7 @@ project.appendChild(projectList)
 
 
 
-let addBlock = Block();
+let addBlock = Block(todoBoard,activeProject);
 
 todoBoard.appendChild(addBlock)
 let headerParent = document.createElement("div")

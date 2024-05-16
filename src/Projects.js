@@ -31,7 +31,7 @@ class Project {
         return this.todos;
     }
     setName(newName) {
-        this.anme = newName
+        this.name = newName;
     }
 
     add(ToDo) {
