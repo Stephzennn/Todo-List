@@ -66,7 +66,7 @@ function listAllChecklist(activeProject,todoTitle,todoBoard ) {
 
     let DueDateDate = document.createElement("div")
     DueDateDate.classList.add("DueDateDate")
-    DueDateDate.textContent = "5/16/2024"
+    DueDateDate.textContent = activeProject.getDueDate()
     DueDate.appendChild(DueDateLabel)
     DueDate.appendChild(DueDateDate)
     
@@ -82,15 +82,23 @@ function listAllChecklist(activeProject,todoTitle,todoBoard ) {
     priorityLabelIcon.classList.add('priorityLabelIcon')
 
 
-    
     priorityLabel.appendChild(priorityLabelIcon)
 
+
+    let priorityWord = document.createElement("div")
+    priorityWord.textContent = "Priority"
+    priorityLabel.appendChild(priorityWord)
     
     let priorityNum = document.createElement("div")
+    priorityNum.classList.add("priorityNum")
+
+    priorityNum.textContent = "Number: " + activeProject.getPriority()
+
     DueDate.classList.add("whiteBorder")
     priority.classList.add("whiteBorder")
 
     priority.appendChild(priorityLabel)
+    priority.appendChild(priorityNum)
     UnderBox.appendChild(DueDate)
     UnderBox.appendChild(priority)
 

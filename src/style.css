@@ -48,7 +48,7 @@
     border-bottom: gray solid 1px;
 }
 
-.DueDateDate{
+.DueDateDate, .priorityNum{
     font-size: 25px;
     font-weight: normal;
 }
@@ -65,7 +65,7 @@
     width: 100%;      /* Full width */
     height: 100%;     /* Full height */
     z-index: 9999;    /* Overlay other elements */
-    background-color:rgb(11, 37, 9);
+    background-color:rgb(0, 0, 0);
     opacity: 85%;
 }
 
@@ -139,7 +139,8 @@
 }
 
 .priorityLabelIcon{
-    background-image: url('./Image/priority.png');
+    background-image: url('./Image/priority3.png');
+    margin-right: 2px;
 }
 
 .signUp {

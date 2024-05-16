@@ -9,8 +9,11 @@ let f = new ToDo("How are you");
 let z = new ToDo("Ofcourse bro");
 let b = new ToDo("See you");
 let newproj = new Project("Baldurs gate 3")
-
+newproj.setPriority("4")
+newproj.setDueDate("5/28/2024")
 let newproj1 = new Project("Witcher 3")
+newproj1.setPriority("2")
+newproj1.setDueDate("6/10/2024")
 
 newproj1.add(z)
 newproj1.add(b)
