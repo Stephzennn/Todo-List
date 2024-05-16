@@ -1,20 +1,6 @@
 import './style.css'
 
-/*
-<label class="PlayerSign" style="text-align: left;" for="g">SIGN:
-                      <div class="Ocheck">
-                          <input type="checkbox" id="O1" name="Sign" value="O">
-                          <label for="O">"O"</label>
-                        </div>
-      
-                        <div class="Xcheck">
-                          <input type="checkbox" id="X1" name="SIGN" value="X">
-                          <label for="X">"X"</label>
-                        </div>
-                  </label>
-
-
-     */             
+          
 function createChecklist(textContent) {
     let firstdiv = document.createElement("div")
     firstdiv.classList.add("firstdiv")
@@ -29,9 +15,95 @@ function createChecklist(textContent) {
     label1.textContent = textContent
     firstdiv.appendChild(input1)
     firstdiv.appendChild(label1)
+
     return firstdiv
 
 
 }
 
-export {createChecklist};
+function createChecklistObject(object) {
+    let ob = createChecklist(object.getDescription())
+    let obinput = ob.querySelector(".input1")
+    
+    if (object.getStatus() != undefined)
+    obinput.checked = object.getStatus()
+    
+   console.log("Inside createchecklistonject")
+   console.log(ob.checked)
+   return ob;
+}
+
+
+function listAllChecklist(activeProject,todoTitle,todoBoard ) {
+    todoTitle.classList.add("todoTitle")
+    let todoTitleul = document.createElement("ul")
+    let todoTitleli = document.createElement("li")
+
+    todoTitleli.textContent = activeProject.getName()
+    todoTitleul.appendChild(todoTitleli)
+    todoTitle.appendChild(todoTitleul)
+    let UnderBox = document.createElement("div")
+    
+    UnderBox.classList.add("UnderBox")
+
+    let DueDate = document.createElement("div")
+    DueDate.classList.add("DueDate")
+    
+    let DueDateLabel = document.createElement("div")
+   
+    DueDateLabel.classList.add("DueDateLabel")
+
+    let DueDateLabelIcon = document.createElement("div")
+    DueDateLabelIcon.classList.add('icons')
+    DueDateLabelIcon.classList.add('DueDateLabelIcon')
+    
+    DueDateLabel.appendChild(DueDateLabelIcon)
+
+    let DueDateWord = document.createElement("div")
+    DueDateWord.textContent = "Due Date"
+    DueDateLabel.appendChild(DueDateWord)
+
+
+    let DueDateDate = document.createElement("div")
+    DueDateDate.classList.add("DueDateDate")
+    DueDateDate.textContent = "5/16/2024"
+    DueDate.appendChild(DueDateLabel)
+    DueDate.appendChild(DueDateDate)
+    
+
+    let priority = document.createElement("div")
+    priority.classList.add("priority")
+    let priorityLabel = document.createElement("div")
+    priorityLabel.classList.add("priorityLabel")
+
+
+    let priorityLabelIcon = document.createElement("div")
+    priorityLabelIcon.classList.add('icons')
+    priorityLabelIcon.classList.add('priorityLabelIcon')
+
+
+    
+    priorityLabel.appendChild(priorityLabelIcon)
+
+    
+    let priorityNum = document.createElement("div")
+    DueDate.classList.add("whiteBorder")
+    priority.classList.add("whiteBorder")
+
+    priority.appendChild(priorityLabel)
+    UnderBox.appendChild(DueDate)
+    UnderBox.appendChild(priority)
+
+    todoTitle.appendChild(UnderBox)
+
+    activeProject.getArray().map(function(num){
+        console.log("herer")
+        console.log(num.getDescription())
+        
+        todoBoard.appendChild(createChecklistObject(num))
+        
+
+    })
+    return
+}
+export {createChecklist, createChecklistObject,listAllChecklist};
